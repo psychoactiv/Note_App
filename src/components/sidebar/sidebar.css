@@ -1,0 +1,64 @@
+.side-bar-nav {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-top: 6rem;
+  padding-right: 1rem;
+  border-right: 1px solid var(--icon-colors);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  transition: 0.4s ease;
+}
+
+.side-opt {
+  display: flex;
+  align-items: center;
+  height: 10rem;
+  padding: 2.5rem 1.8rem;
+  justify-content: flex-start;
+  column-gap: 2rem;
+  cursor: pointer;
+  border-radius: 0 20px 20px 0;
+  transition: 0.4s ease;
+}
+
+.side-opt i {
+  font-size: 3rem;
+  padding: 1.5rem;
+  border-radius: 999px;
+  color: var(--icon-colors);
+}
+
+.side-opt i:hover {
+  background-color: var(--side-bar-effect);
+}
+
+.side-bar-name {
+  font-size: 2.5rem;
+  color: var(--grey);
+  margin: 0;
+  padding: 0;
+  display: none;
+  transition:  0.4s ease;
+}
+
+.toggle-side-display-visible {
+  transition: 0.4s ease;
+  display: block;
+  width: 7rem;
+}
+
+.active-side-opt:hover {
+  background-color: var(--side-bar-effect);
+}
+
+.bg-change {
+  background-color: var(--side-onClick-effect);
+}
+
+a {
+  text-decoration: none;
+}

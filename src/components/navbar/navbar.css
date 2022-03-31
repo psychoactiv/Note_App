@@ -1,0 +1,136 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+.brand-title {
+  font-size: 5rem;
+  color: var(--redish);
+  margin: 0 5rem;
+  padding: 0;
+}
+
+.fa-bars {
+  font-size: 3.5rem;
+  color: var(--icon-colors);
+}
+
+.side-bar-butn {
+  padding: 1rem 1.2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  background-color: var(--navbar-color);
+}
+
+.side-bar-butn:hover {
+  background-color: var(--side-bar-btn-hover);
+}
+
+.side-bar-butn:focus {
+  background-color: var(--side-bar-btn-focus);
+}
+
+.icon-head.header-nav-bar {
+  align-items: center;
+  height: 7rem;
+  background-color: var(--navbar-color);
+  box-shadow: 0px 1px 10px 0px var(--general-purpose-black);
+}
+
+.Navigation-nav-bar i {
+  font-size: 3rem;
+  color: var(--icon-colors);
+  margin-left: 2rem;
+}
+
+.Navigation-nav-bar {
+  margin-right: 5rem;
+}
+
+.inp-close-btn{
+  
+}
+
+#button-3 .knobs:before {
+  content: "🌕";
+  font-size: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 1rem 4px;
+  background-color: var(--border-color-light);
+  border-radius: 50%;
+  transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+}
+
+#button-3 .theme-changer:checked:active + .knobs:before {
+  margin-left: -3rem;
+}
+
+#button-3 .theme-changer:checked + .knobs:before {
+  content: "🌒";
+  top: 0;
+  font-size: 2rem;
+  left: 3.8rem;
+  background-color: var(--cyan);
+}
+
+#button-3 .theme-changer:checked ~ .layer {
+  background-color: var(--cyan-color);
+}
+
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  position: relative;
+  top: 50%;
+  width: 7rem;
+  height: 4rem;
+  margin: -2rem auto 0 auto;
+  overflow: hidden;
+  margin: 0;
+}
+
+.button.r,
+.button.r .layer {
+  border-radius: 8rem;
+}
+
+.theme-changer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: var(--border-color);
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+a {
+  display: flex;
+  align-items: flex-end;
+}
