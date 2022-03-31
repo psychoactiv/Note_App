@@ -3,6 +3,7 @@
   --organgish: rgb(255, 102, 0);
   --greenish: rgb(75, 226, 75);
   --cyan-color: darkcyan;
+
   --general-purpose-black-light: rgb(185, 86, 86);
   --general-purpose-black-dark: rgb(8, 8, 8);
   --side-bar-btn-hover: rgb(56, 56, 56);
@@ -13,6 +14,7 @@
   --border-color-dark: rgb(110, 129, 127);
   --icon-colors-dark: #fff;
   --grey-text-dark: grey;
+  --lightest-grey-dark: rgb(74, 74, 74);
   --box-shawdow-dark: 0 0 10px 0px var(--general-purpose-black-dark);
   --side-bar-effect-dark: rgb(36, 48, 66);
   --side-onClick-effect-dark: rgb(72, 85, 105);
@@ -21,6 +23,7 @@
   --navbar-color-light: #ffffff;
   --border-color-light: rgb(255, 132, 132);
   --icon-colors-light: rgb(22, 22, 22);
+  --lightest-grey-light: rgb(138, 119, 119);
   --grey-text-light: rgb(63, 63, 63);
   --box-shawdow-light: 0 0px 6px 0px var(--general-purpose-black-light);
   --side-bar-effect-light: var(--redish);
@@ -38,6 +41,7 @@
   --side-bar-btn-hover: var(--side-bar-btn-hover-dark);
   --general-purpose-black: var(--general-purpose-black-dark);
   --box-shadow: var(--box-shawdow-dark);
+  --lightest-grey: var(--lightest-grey-dark);
   --side-bar-effect: var(--side-bar-effect-dark);
   --side-onClick-effect: var(--side-onClick-effect-dark);
   transition: 0.5s ease;
@@ -49,6 +53,7 @@
   --border-color: var(--border-color-light);
   --icon-colors: var(--icon-colors-light);
   --grey: var(--grey-text-light);
+  --lightest-grey: var(--lightest-grey-light);
   --general-purpose-black: var(--general-purpose-black-light);
   --side-bar-btn-hover: var(--side-bar-btn-hover-light);
   --box-shadow: var(--box-shawdow-light);
@@ -86,6 +91,7 @@ code {
     --border-color: var(--border-color-dark);
     --icon-colors: var(--icon-colors-dark);
     --grey: var(--grey-text-dark);
+    --lightest-grey: var(--lightest-grey-dark);
     --general-purpose-black: var(--general-purpose-black-dark);
     --side-bar-btn-hover: var(--side-bar-btn-hover-dark);
     --box-shadow: var(--box-shawdow-dark);
@@ -103,6 +109,7 @@ code {
     --general-purpose-black: var(--general-purpose-black-light);
     --icon-colors: var(--icon-colors-light);
     --grey: var(--grey-text-light);
+    --lightest-grey: var(--lightest-grey-light);
     --side-bar-btn-hover: var(--side-bar-btn-hover-light);
     --box-shadow: var(--box-shawdow-light);
     --side-bar-effect: var(--side-bar-effect-light);

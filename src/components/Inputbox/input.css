@@ -44,4 +44,10 @@
   font-size: 2rem;
   cursor: pointer;
   color: var(--grey);
+  padding: 5px;
+  border-radius: 999px;
+}
+
+.user-inp-btn-close:hover {
+  background-color: var(--lightest-grey);
 }
