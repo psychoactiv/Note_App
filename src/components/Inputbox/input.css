@@ -1,0 +1,53 @@
+.input-box-holder {
+  border: 1px solid var(--border-color);
+  width: 50%;
+  border-radius: 5px;
+  height: fit-content;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 4rem;
+  padding: 0;
+  box-shadow: var(--box-shadow);
+}
+
+.input-box-holder input {
+  width: 100%;
+  color: var(--grey);
+  align-items: stretch;
+  border: none;
+  background: var(--bg-color);
+  font-size: 2rem;
+  flex-grow: 1;
+  outline: none;
+  padding: 1rem;
+  appearance: none;
+}
+
+.title-text {
+  display: none;
+}
+
+.block-display {
+  display: block;
+}
+
+.inp-utils-space {
+  justify-content: flex-end;
+  padding: 1rem 1.5rem;
+}
+
+.user-inp-btn-close {
+  background-color: var(--bg-color);
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--grey);
+  padding: 5px;
+  border-radius: 999px;
+}
+
+.user-inp-btn-close:hover {
+  background-color: var(--lightest-grey);
+}

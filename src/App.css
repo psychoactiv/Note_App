@@ -1,10 +1,20 @@
+@import "./index.css";
+
 .App {
   text-align: center;
+}
+
+.whole-App {
+  background-color: var(--bg-color);
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.page-container {
+  flex-grow: 1;
 }
 
 @media (prefers-reduced-motion: no-preference) {
