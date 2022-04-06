@@ -1,13 +1,14 @@
 import React, { Fragment } from "react";
 import { InputNote } from "../../components/Inputbox/Input";
-import "./Home.css";
+import { NoteList } from "../../components/noteList/noteList";
 
-const Home = () => {
+const Note = () => {
   return (
     <Fragment>
       <InputNote />
+      <NoteList />
     </Fragment>
   );
 };
 
-export { Home };
+export { Note };

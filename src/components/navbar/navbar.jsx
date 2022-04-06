@@ -1,4 +1,4 @@
-import { React, Fragment } from "react";
+import { React, Fragment, useState } from "react";
 import { useNavigation } from "../../context/navigation-context";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/Theme-context";
@@ -9,7 +9,7 @@ const Navbar = () => {
     theme: { decideTheme },
     setTheme,
   } = useTheme();
-  const { changeSideDisplay } = useNavigation();
+  const { changeSideDisplay, updatedListStyle, listStyle } = useNavigation();
   return (
     <Fragment>
       <header className="header-nav-bar icon-head">
@@ -42,8 +42,13 @@ const Navbar = () => {
             <div className="knobs"></div>
             <div className="layer"></div>
           </div>
-          <div className="bg-color-picker"></div>
-          <Link to="/">
+          <div className="nav-link-container">
+            <i
+              class={`fas ${listStyle ? `fa-border-all` : `fa-list-ul`}`}
+              onClick={() => updatedListStyle((state) => !state)}
+            ></i>
+          </div>
+          <Link to="/" className="nav-link-container">
             <i className="far fa-user"></i>
           </Link>
         </nav>

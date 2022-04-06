@@ -3,6 +3,7 @@
 *::before {
   box-sizing: border-box;
 }
+
 .brand-title {
   font-size: 5rem;
   color: var(--redish);
@@ -48,8 +49,8 @@
   margin-right: 5rem;
 }
 
-.inp-close-btn{
-  
+.fa-border-all {
+  padding: 0;
 }
 
 #button-3 .knobs:before {
@@ -130,7 +131,8 @@
   z-index: 1;
 }
 
-a {
+.nav-link-container {
   display: flex;
   align-items: flex-end;
+  cursor: pointer;
 }

@@ -5,15 +5,19 @@ import App from "./App";
 import { makeServer } from "./server";
 import { NavigationContextProvider } from "./context/navigation-context";
 import { ThemeProvider } from "./context/Theme-context";
+import { NoteDataProvider } from "./context/noteData-context";
+
 // Call make Server
-makeServer();
+// makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider>
-      <NavigationContextProvider>
-        <App />
-      </NavigationContextProvider>
+      <NoteDataProvider>
+        <NavigationContextProvider>
+          <App />
+        </NavigationContextProvider>
+      </NoteDataProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")

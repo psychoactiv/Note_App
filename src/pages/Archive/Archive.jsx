@@ -1,7 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { ArchiveList } from "../../components/ArchiveList/ArchiveList";
 
 const Archive = () => {
-  return <div>Archive</div>;
+  return (
+    <Fragment>
+      <ArchiveList />
+    </Fragment>
+  );
 };
 
 export { Archive };

@@ -1,12 +1,16 @@
-import React from "react";
-import { useTheme } from "../../context/Theme-context";
+import React, { Fragment } from "react";
+
+import { TrashList } from "../../components";
 import "../../index.css";
 
 const Trash = () => {
-  const {
-    theme: { decideTheme },
-  } = useTheme();
-  return <div app-theme={decideTheme}>Trash</div>;
+  return (
+    <div>
+      <Fragment>
+        <TrashList />
+      </Fragment>
+    </div>
+  );
 };
 
 export { Trash };
