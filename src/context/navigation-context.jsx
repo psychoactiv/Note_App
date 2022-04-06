@@ -8,9 +8,18 @@ const NavigationContextProvider = ({ children }) => {
     displayByHamburger: false,
   });
   const [optColor, setOptColor] = useState();
+  const [listStyle, updatedListStyle] = useState(false);
+
   return (
     <navContext.Provider
-      value={{ initialDisplay, changeSideDisplay, optColor, setOptColor }}
+      value={{
+        initialDisplay,
+        changeSideDisplay,
+        optColor,
+        setOptColor,
+        listStyle,
+        updatedListStyle,
+      }}
     >
       {children}
     </navContext.Provider>

@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Archive, Label, Trash } from "./pages";
+import { Note, Archive, Label, Trash } from "./pages";
 import { Navbar, Sidebar } from "./components";
 import { useTheme } from "./context/Theme-context";
 
@@ -16,10 +16,10 @@ function App() {
           <Sidebar />
           <div className="page-container">
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/" element={<Archive />} />
-              <Route path="/" element={<Label />} />
-              <Route path="/" element={<Trash />} />
+              <Route path="/" element={<Note />} />
+              <Route path="/archive" element={<Archive />} />
+              <Route path="/label" element={<Label />} />
+              <Route path="/trash" element={<Trash />} />
             </Routes>
           </div>
         </div>

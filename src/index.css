@@ -84,6 +84,43 @@ code {
     monospace;
 }
 
+.grey-color {
+  color: var(--grey-text-dark);
+}
+
+.grey-color:hover {
+  color: var(--icon-colors);
+}
+
+.Archive-clicked {
+  color: var(--icon-colors);
+}
+
+.note-icon-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.note-icon-details {
+  position: absolute;
+  bottom: -1;
+  left: -50%;
+  min-width: max-content;
+  font-size: 1.5rem;
+  display: none;
+  padding: 5px;
+  border-radius: 3rem;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.note-icon-container:hover .note-icon-details {
+  display: block;
+  font-size: 2rem;
+  background-color: var(--grey);
+  color: var(--navbar-color-light);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: var(--bg-color-dark);

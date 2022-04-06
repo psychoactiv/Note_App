@@ -1,0 +1,48 @@
+.note-container {
+  width: 80%;
+  margin: 8rem auto;
+  border-radius: 5px;
+  padding: 1rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.single-note {
+  border: 1px solid var(--border-color);
+  color: var(--grey);
+  min-width: 25rem;
+  min-height: 13rem;
+  align-self: flex-start;
+  border-radius: 5px;
+  padding: 1rem;
+  word-wrap: break-word;
+}
+
+.single-note h1,
+.single-note div {
+  font-size: 2rem;
+}
+
+.listed-display {
+  flex-direction: column;
+}
+
+.listed-display .single-note {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.grid-display {
+  flex-wrap: wrap;
+}
+
+.icon-note-container {
+  display: flex;
+  justify-content: space-between;
+  width: 25rem;
+}
+
+.icon-container-shift-left {
+  justify-content: flex-end;
+  gap: 1rem;
+}
