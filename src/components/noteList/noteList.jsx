@@ -14,17 +14,12 @@ const NoteList = () => {
   } = useNoteData();
   const { listStyle } = useNavigation();
 
-  function grow() {
-    console.log(itemToReduce);
-  }
-
   return (
     <div
       className={`note-container  ${
         listStyle ? `listed-display` : `grid-display`
       }`}
     >
-      <button onClick={grow}>Check</button>
       {note.map((item) => {
         return (
           <Fragment>
