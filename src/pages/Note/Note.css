@@ -1,5 +1,16 @@
-
 p {
   color: white;
   height: 100%;
+}
+
+.fa-filter {
+  font-size: 4rem;
+}
+
+.note-inp-contain {
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  width: 75%;
+  margin: 0 auto;
 }

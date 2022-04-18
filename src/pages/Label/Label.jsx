@@ -1,7 +1,8 @@
 import React from "react";
+import { LabelList } from "../../components/LabelList/LabelList";
 
 const Label = () => {
-  return <div>Label</div>;
+  return <LabelList />;
 };
 
 export { Label };

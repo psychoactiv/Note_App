@@ -5,9 +5,6 @@ import {
   restoreFromTrash,
   deleteAll,
   moveToArchive,
-  deleteFromArchive,
-  addingToNote,
-  addingToTrash,
 } from "../utils/api-calls";
 
 function noteListReducerfn(state, { type, payload }) {
@@ -43,7 +40,6 @@ function noteListReducerfn(state, { type, payload }) {
         [payload.belongsTo]: [...removeFromNotes],
       };
     case "MOVE_TO_NOTE":
-      console.log(payload);
       restoreFromTrash({
         ...payload,
         item: { ...payload.item, isArchived: false },
@@ -66,7 +62,6 @@ function noteListReducerfn(state, { type, payload }) {
         trash: [...deleteFromArr],
       };
     case "MOVE_TO_ARCHIVE":
-      console.log(payload);
       const archiveArr = { ...payload.item, isArchived: true };
       moveToArchive({ item: archiveArr, belongsTo: payload.belongsTo });
       const willMoveToArchive = state[payload.belongsTo].filter(
@@ -77,6 +72,23 @@ function noteListReducerfn(state, { type, payload }) {
         archive: [...state.archive, archiveArr],
         [payload.belongsTo]: [...willMoveToArchive],
       };
+    case "UPDATELABEL":
+      return {
+        ...state,
+        note: state.note.map((item) =>
+          item.id === payload.id ? { ...payload } : { ...item }
+        ),
+        archive: state.archive.map((item) =>
+          item.id === payload.id ? { ...payload } : { ...item }
+        ),
+      };
+    case "LABELFILTER":
+      return {
+        ...state,
+        note: [...payload],
+      };
+    default:
+      return state;
   }
 }
 
