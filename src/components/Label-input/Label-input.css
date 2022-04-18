@@ -1,0 +1,75 @@
+.label-form {
+  position: absolute;
+  bottom: -1;
+  left: -50%;
+  width: 20rem;
+  height: 30rem;
+  border: var(--black);
+  z-index: 2;
+  background-color: var(--label-form-bg);
+  border-radius: 3px;
+  box-shadow: var(--box-shadow);
+}
+
+.label-option-box {
+  height: min-content;
+  justify-content: flex-start;
+  padding: 1rem;
+  align-items: center;
+  gap: 1.5rem;
+  word-wrap: break-word;
+}
+.label-option-box-container {
+  height: 70%;
+  margin-top: 1.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  color: var(--bg-color);
+}
+.label-option-box:hover {
+  background-color: var(--grey-general);
+}
+
+.user-label-input {
+  width: 100%;
+  font-size: 2rem;
+  height: 2.5rem;
+  background-color: var(--label-form-bg);
+  border: none;
+  outline: none;
+  appearance: none;
+  padding: 0 1rem;
+  color: var(--grey);
+}
+
+.label-form h3 {
+  color: var(--icon-colors);
+  font-size: 2rem;
+  padding: 1rem 1.5rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-align: center;
+}
+
+.label-option-box div {
+  max-width: 80%;
+  height: fit-content;
+  word-wrap: break-word;
+  font-size: 2rem;
+  color: var(--grey);
+}
+
+.head-inp {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.head-inp i {
+  color: var(--grey);
+  font-size: 2rem;
+}
+
+.head-inp i:hover {
+  color: var(--red-alert);
+}

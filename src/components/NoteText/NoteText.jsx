@@ -1,4 +1,5 @@
 import React from "react";
+import { LabelChips } from "../label-chips/label-chips";
 
 const NoteText = ({ item }) => {
   return (
@@ -7,6 +8,7 @@ const NoteText = ({ item }) => {
         {item.title}
       </h1>
       <div className="display-block-2rem">{item.note}</div>
+      {item.labelName.length ? <LabelChips labelList={item.labelName} /> : null}
     </div>
   );
 };

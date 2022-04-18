@@ -13,6 +13,7 @@ const NoteDataContext = createContext(null);
 const NoteDataProvider = ({ children }) => {
   const [itemToReduce, dispatchNoteList] = useReducer(noteListReducerfn, {
     note: [],
+    noteBackup:[],
     trash: [],
     archive: [],
   });

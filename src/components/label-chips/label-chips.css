@@ -1,0 +1,25 @@
+.single-chip {
+  display: flex;
+  min-width: 4rem;
+  padding: 5px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  color: var(--icon-colors);
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.single-chip i {
+  font-size: 1.5rem;
+  padding: 2px 3px 0 3px;
+}
+
+.chips-container {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}

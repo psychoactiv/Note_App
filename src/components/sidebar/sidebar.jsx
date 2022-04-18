@@ -15,7 +15,7 @@ const Sidebar = () => {
     {
       id: v4(),
       path: "/label",
-      name: "Tags",
+      name: "All Tags",
       icon: `fas fa-tag`,
     },
     {
@@ -78,7 +78,7 @@ const Sidebar = () => {
                   : null
               }`}
             >
-              {item.name}
+              {item.name} 
             </div>
           </div>
         </Link>

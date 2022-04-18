@@ -23,7 +23,7 @@ const TrashList = () => {
           return (
             <div
               key={item.id}
-              className="single-note flex jc-sb flex-direct-col"
+              className={`single-note flex jc-sb flex-direct-col ${item.cardColor}`}
             >
               <NoteText item={item} />
               <div className="flex icon-container-shift-left">

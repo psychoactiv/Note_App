@@ -3,6 +3,7 @@
   --organgish: rgb(255, 102, 0);
   --greenish: rgb(75, 226, 75);
   --cyan-color: darkcyan;
+  --grey-general: rgb(131, 124, 124);
 
   --general-purpose-black-light: rgb(185, 86, 86);
   --general-purpose-black-dark: rgb(8, 8, 8);
@@ -11,20 +12,22 @@
 
   --bg-color-dark: rgb(32, 31, 31);
   --navbar-color-dark: #1a1717;
+  --label-form-bg-dark: #2d2e30;
   --border-color-dark: rgb(110, 129, 127);
   --icon-colors-dark: #fff;
-  --grey-text-dark: grey;
+  --grey-text-dark: #babdbe;
   --lightest-grey-dark: rgb(74, 74, 74);
   --box-shawdow-dark: 0 0 10px 0px var(--general-purpose-black-dark);
   --side-bar-effect-dark: rgb(36, 48, 66);
   --side-onClick-effect-dark: rgb(72, 85, 105);
 
   --bg-color-light: rgb(255, 219, 219);
+  --label-form-bg-light: rgb(255, 177, 177);
   --navbar-color-light: #ffffff;
   --border-color-light: rgb(255, 132, 132);
   --icon-colors-light: rgb(22, 22, 22);
   --lightest-grey-light: rgb(138, 119, 119);
-  --grey-text-light: rgb(63, 63, 63);
+  --grey-text-light: rgb(112, 75, 75);
   --box-shawdow-light: 0 0px 6px 0px var(--general-purpose-black-light);
   --side-bar-effect-light: var(--redish);
   --side-onClick-effect-light: var(--border-color-light);
@@ -41,6 +44,7 @@
   --side-bar-btn-hover: var(--side-bar-btn-hover-dark);
   --general-purpose-black: var(--general-purpose-black-dark);
   --box-shadow: var(--box-shawdow-dark);
+  --label-form-bg: var(--label-form-bg-dark);
   --lightest-grey: var(--lightest-grey-dark);
   --side-bar-effect: var(--side-bar-effect-dark);
   --side-onClick-effect: var(--side-onClick-effect-dark);
@@ -50,6 +54,7 @@
 [app-theme="light"] {
   --bg-color: var(--bg-color-light);
   --navbar-color: var(--navbar-color-light);
+  --label-form-bg: var(--label-form-bg-light);
   --border-color: var(--border-color-light);
   --icon-colors: var(--icon-colors-light);
   --grey: var(--grey-text-light);
@@ -85,7 +90,7 @@ code {
 }
 
 .grey-color {
-  color: var(--grey-text-dark);
+  color: var(--grey-general);
 }
 
 .grey-color:hover {
@@ -114,6 +119,30 @@ code {
   z-index: 1;
 }
 
+.color-red {
+  background-color: #ef4444;
+}
+
+.color-orange {
+  background-color: #f97316;
+}
+
+.color-yellow {
+  background-color: #eab308;
+}
+
+.color-green {
+  background-color: #10b981;
+}
+
+.color-blue {
+  background-color: #0ea5e9;
+}
+
+.color-default {
+  background-color: var(--bg-color);
+}
+
 .note-icon-container:hover .note-icon-details {
   display: block;
   font-size: 2rem;
@@ -126,6 +155,7 @@ code {
     --bg-color: var(--bg-color-dark);
     --navbar-color: var(--navbar-color-dark);
     --border-color: var(--border-color-dark);
+    --label-form-bg: var(--label-form-bg-dark);
     --icon-colors: var(--icon-colors-dark);
     --grey: var(--grey-text-dark);
     --lightest-grey: var(--lightest-grey-dark);
@@ -151,6 +181,7 @@ code {
     --box-shadow: var(--box-shawdow-light);
     --side-bar-effect: var(--side-bar-effect-light);
     --side-onClick-effect: var(--side-onClick-effect-light);
+    --label-form-bg: var(--label-form-bg-light);
     transition: 0.5s ease;
   }
 }
