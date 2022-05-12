@@ -9,6 +9,7 @@
   backdrop-filter: blur(5px);
   z-index: 222;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -30,4 +31,30 @@
 .update-action-btn-container button:hover {
   background-color: var(--grey);
   color: white;
+}
+
+.label-container {
+  display: flex;
+  padding: 0.5rem 1rem;
+  flex-direction: column;
+  height: 50vh;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+}
+
+.filter-container {
+  column-gap: 2rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.text-style {
+  color: var(--border-color);
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.filter-containers {
+  border: 1px solid var(--border-color);
+  padding: 1rem;
 }

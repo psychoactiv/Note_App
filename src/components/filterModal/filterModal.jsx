@@ -1,60 +1,121 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLabel } from "../../context/label-context";
 import { useNoteData } from "../../context/noteData-context";
 import "./filterModal.css";
 
 const FilterModal = ({ closeModal }) => {
-  const { dispatchNoteList } = useNoteData();
   const {
-    labelInitial: {
-      label,
-      labelPages: { allLabels },
-    },
+    setFilteredNote,
+    filteredNote: { labelMatch },
+    itemToReduce: { note, archive },
+  } = useNoteData();
+  const {
+    labelInitial: { label },
+    labelDispatch,
   } = useLabel();
-  const [filteredLabel, setFilteredLabel] = useState([]);
-  function HandleSubmit() {
-    const filteredLabels = allLabels.filter((item) =>
-      item.labelName.some((singleLabel) => {
-        console.log(singleLabel);
-        return filteredLabel.some((labelTOCheck) => {
-          console.log(singleLabel, labelTOCheck);
-          return singleLabel.toLowerCase() === labelTOCheck.toLowerCase();
-        });
-      })
-    );
-    console.log(filteredLabel);
-    // dispatchNoteList({ type: "LABELFILTER", payload: filteredLabel });
-  }
+
+  useEffect(() => {
+    labelDispatch({ type: "ALL_LABELED_NOTE", payload: [...note, ...archive] });
+  }, [note, archive]);
   return (
     <div className="filter-modal">
-      {label.length ? (
-        label.map((item) => (
-          <label
-            htmlFor={`${item}-id`}
-            className="flex label-option-box flex-wrap"
-          >
+      <h3 className="text-style">Filters</h3>
+      <div className="flex filter-container">
+        <div className="label-container">
+          <h3 className="text-style">Filter by label</h3>
+          {label.length ? (
+            label.map((item) => (
+              <label
+                htmlFor={`${item}-id`}
+                className="flex label-option-box flex-wrap"
+              >
+                <input
+                  id={`${item}-id`}
+                  type="checkbox"
+                  checked={labelMatch.some((arr) => arr === item)}
+                  onChange={() =>
+                    setFilteredNote({ type: "LABELFILTER", payload: item })
+                  }
+                />
+                <div className="text-style">{item}</div>
+              </label>
+            ))
+          ) : (
+            <div className="text-style">No Labels added</div>
+          )}
+        </div>
+        <div className="filter-containers">
+          <label className="flex align-i-center col-gap-1">
             <input
-              id={`${item}-id`}
-              type="checkbox"
-              checked={filteredLabel.some((arr) => (arr = label))}
-              onChange={() =>
-                setFilteredLabel((state) =>
-                  state.some(
-                    (inArr) => item.toLowerCase() === inArr.toLowerCase()
-                  )
-                    ? state.filter((filterteditem) => filterteditem !== item)
-                    : [...state, item]
-                )
+              type="radio"
+              name="SORTBYCREATED"
+              onClick={() =>
+                setFilteredNote({
+                  type: "SORTBYCREATED",
+                  payload: "FIRSTCREATED",
+                })
               }
             />
-            <div>{item}</div>
+            <div className="text-style">Sort by first created</div>
           </label>
-        ))
-      ) : (
-        <div>No Labels added</div>
-      )}
+          <label className="flex align-i-center col-gap-1">
+            <input
+              type="radio"
+              name="SORTBYCREATED"
+              onClick={() =>
+                setFilteredNote({
+                  type: "SORTBYCREATED",
+                  payload: "LASTCREATED",
+                })
+              }
+            />
+            <div className="text-style">Sort by last created</div>
+          </label>
+        </div>
+        <div className="filter-containers">
+          <h3 className="text-style">Filter by priority</h3>
+          <label className="flex align-i-center col-gap-1">
+            <input
+              type="checkbox"
+              name="SORTBYCREATED"
+              onClick={() =>
+                setFilteredNote({
+                  type: "PRIORITY",
+                  payload: "HIGH PRIORITY",
+                })
+              }
+            />
+            <div className="text-style">HIGH PRIORITY</div>
+          </label>
+          <label className="flex align-i-center col-gap-1">
+            <input
+              type="checkbox"
+              name="SORTBYCREATED"
+              onClick={() =>
+                setFilteredNote({
+                  type: "PRIORITY",
+                  payload: "MEDIUM PRIORITY",
+                })
+              }
+            />
+            <div className="text-style">MEDIUM PRIORITY</div>
+          </label>
+          <label className="flex align-i-center col-gap-1">
+            <input
+              type="checkbox"
+              name="SORTBYCREATED"
+              onClick={() =>
+                setFilteredNote({
+                  type: "PRIORITY",
+                  payload: "LOW PRIORITY",
+                })
+              }
+            />
+            <div className="text-style">LOW PRIORITY</div>
+          </label>
+        </div>
+      </div>
       <div className="flex update-action-btn-container">
-        <button onClick={() => HandleSubmit()}>apply</button>
         <button onClick={() => closeModal(false)}>Close</button>
       </div>
     </div>

@@ -1,8 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useNoteData } from "../../context/noteData-context";
 import { useNavigation } from "../../context/navigation-context";
 import { EditModal } from "../Edit-modal/Edit-Modal";
+import { CardColorInput } from "../CardColorInput/CardColorInput";
 import { NoteText } from "../NoteText/NoteText";
+import { useLabel } from "../../context/label-context";
+import { LabelInput } from "../Label-input/Label-input";
 
 const ArchiveList = () => {
   const {
@@ -11,6 +14,10 @@ const ArchiveList = () => {
     setEditNote,
     editNote,
   } = useNoteData();
+
+  const { labelDispatch } = useLabel();
+
+  const [display, setDisplay] = useState({ id: "" });
 
   const { listStyle } = useNavigation();
 
@@ -31,7 +38,13 @@ const ArchiveList = () => {
                 key={item.id}
                 className={`single-note flex jc-sb flex-direct-col ${item.cardColor}`}
               >
-                <NoteText item={item} />
+                <NoteText
+                  item={item}
+                  idToCheck={{
+                    itemId: `${item.id}labelInp`,
+                    checkDisplay: display.id,
+                  }}
+                />
                 <div className="icon-note-container">
                   <div
                     className="note-icon-container"
@@ -58,12 +71,42 @@ const ArchiveList = () => {
                     <div className="note-icon-details">Move back to notes</div>
                   </div>
                   <div className="note-icon-container">
-                    <i className="fas fa-palette grey-color icon-item"></i>
-                    <div className="note-icon-details">Choose Color</div>
+                    <i
+                      className="fas fa-palette grey-color icon-item"
+                      onClick={() => setDisplay({ id: `${item.id}colorInp` })}
+                    ></i>
+                    {display.id === `${item.id}colorInp` ? (
+                      <CardColorInput
+                        belongsTo={"notepad"}
+                        item={item}
+                        closeColorDisplay={setDisplay}
+                      />
+                    ) : (
+                      <div className="note-icon-details">Choose Color</div>
+                    )}
                   </div>
                   <div className="note-icon-container">
-                    <i className="fas fa-tag grey-color icon-item"></i>
-                    <div className="note-icon-details">Tag</div>
+                    <i
+                      className="fas fa-tag grey-color icon-item"
+                      onClick={() => {
+                        setDisplay({
+                          id: `${item.id}labelInp`,
+                        });
+                        labelDispatch({
+                          type: "INITIAL_NOTE_CHIPS",
+                          payload: item.labelName,
+                        });
+                      }}
+                    ></i>
+                    {`${item.id}labelInp` === display.id ? (
+                      <LabelInput
+                        changeLabelDisplay={setDisplay}
+                        belongsTo={"labelNotepadChipArr"}
+                        item={item}
+                      />
+                    ) : (
+                      <div className="note-icon-details">Tag</div>
+                    )}
                   </div>
                   <div
                     className="note-icon-container"

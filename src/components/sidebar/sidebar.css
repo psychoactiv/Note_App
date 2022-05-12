@@ -1,16 +1,17 @@
 .side-bar-nav {
   display: flex;
+  align-self: stretch;
   flex-direction: column;
   height: 100vh;
+  width: 12rem;
+  overflow: scroll -moz-scrollbars-none;
   padding-top: 6rem;
   padding-right: 1rem;
   border-right: 1px solid var(--icon-colors);
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  top: 0;
-  left: 0;
   transition: 0.4s ease;
+  -ms-overflow-style: none;
+  overflow-x: hidden;
+  scrollbar-width: none;
 }
 
 .side-opt {
@@ -42,7 +43,22 @@
   margin: 0;
   padding: 0;
   display: none;
+  overflow: hidden;
   transition: 0.4s ease;
+}
+
+.side-bar-nav.side-width {
+  width: 20rem;
+  overflow: scroll -moz-scrollbars-none;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.side-bar-nav::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+  display: none;
 }
 
 .toggle-side-display-visible {
@@ -61,4 +77,17 @@
 
 a {
   text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+  .side-bar-nav {
+    width: 7rem;
+  }
+  .side-opt i {
+    font-size: 2.5rem;
+    padding: 5px;
+  }
+  .side-bar-nav.side-width {
+    width: 18rem;
+  }
 }

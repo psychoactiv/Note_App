@@ -26,7 +26,7 @@ const Navbar = () => {
         </button>
 
         <h2 className="brand-title">NoteBox</h2>
-        <nav className="Navigation-nav-bar">
+        <nav className="Navigation-nav-bar kf changed-wd">
           <div className="button r center" id="button-3">
             <input
               type="checkbox"
@@ -44,11 +44,11 @@ const Navbar = () => {
           </div>
           <div className="nav-link-container">
             <i
-              class={`fas ${listStyle ? `fa-border-all` : `fa-list-ul`}`}
+              className={`fas ${listStyle ? `fa-border-all` : `fa-list-ul`} display-status`}
               onClick={() => updatedListStyle((state) => !state)}
             ></i>
           </div>
-          <Link to="/" className="nav-link-container">
+          <Link to="/" className="nav-link-container icon-nav-con">
             <i className="far fa-user"></i>
           </Link>
         </nav>

@@ -1,8 +1,14 @@
 import React from "react";
 import { LabelList } from "../../components/LabelList/LabelList";
+import { useLabel } from "../../context/label-context";
 
 const Label = () => {
-  return <LabelList />;
+  const {
+    labelInitial: {
+      labelPages: { allLabels },
+    },
+  } = useLabel();
+  return <LabelList labelDisplay={allLabels} />;
 };
 
 export { Label };

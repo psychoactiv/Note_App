@@ -10,12 +10,13 @@
 .single-note {
   border: 1px solid var(--border-color);
   color: var(--grey);
-  min-width: 25rem;
+  width: 35rem;
   min-height: 13rem;
   align-self: flex-start;
   border-radius: 5px;
   padding: 1rem;
   word-wrap: break-word;
+  transition: 1s ease-in-out;
 }
 
 .single-note h1,
@@ -28,7 +29,7 @@
 }
 
 .listed-display .single-note {
-  width: 80%;
+  min-width: 80%;
   margin: 0 auto;
 }
 
@@ -39,10 +40,31 @@
 .icon-note-container {
   display: flex;
   justify-content: space-between;
-  width: 25rem;
+  width: 100%;
 }
 
 .icon-container-shift-left {
   justify-content: flex-end;
   gap: 1rem;
+}
+
+@media screen and (max-width: 1100px) {
+  .grid-display {
+    flex-direction: column;
+  }
+  .grid-display .single-note {
+    min-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .single-note {
+    width: 100%;
+    min-height: 13rem;
+  }
+  .single-note h1,
+  .single-note div {
+    font-size: 1.5rem;
+  }
 }

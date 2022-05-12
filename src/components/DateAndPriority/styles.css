@@ -1,0 +1,52 @@
+.datePriorityContainer {
+  margin: 1rem 0;
+}
+
+.datePriorityContainer .common-style {
+  font-size: 1.3rem;
+}
+
+.select-style {
+  outline: none;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  color: var(--grey);
+  padding-top: 4px;
+  transition: 0.3s ease-in-out;
+}
+
+.child-container {
+  width: 60%;
+}
+
+@media screen and (max-width: 600px) {
+  .datePriorityContainer {
+    margin: 3px;
+  }
+  .select-style {
+    width: 100%;
+  }
+  .child-container {
+    width: 100%;
+    margin: 5px 0;
+    justify-content: space-between;
+  }
+  .select-style {
+    width: fit-content;
+  }
+}
+@media screen and (max-width: 500px) {
+  .date-container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .child-container {
+    flex-wrap: wrap;
+  }
+  .select-style {
+    width: 100%;
+  }
+}

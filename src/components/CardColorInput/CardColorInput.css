@@ -3,7 +3,7 @@
   bottom: -1;
   left: -50%;
   width: 35rem;
-  height: 9rem;
+  height: 7rem;
   border: var(--black);
   z-index: 2;
   background-color: var(--label-form-bg);
@@ -18,6 +18,12 @@
 .color-common {
   width: 3.5rem;
   height: 3.5rem;
+  border-radius: 999px;
+}
+
+.notepad .color-common {
+  width: 3rem;
+  height: 3rem;
   border-radius: 999px;
 }
 
@@ -49,12 +55,29 @@
   color: var(--icon-colors);
 }
 
+.notepad .basic-color-input-text {
+  color: var(--icon-colors);
+  font-size: 1rem;
+}
+.notepad h2.basic-color-input-text {
+  color: var(--icon-colors);
+  font-size: 1.5rem;
+}
+
 .contain-color-box {
   width: 90%;
   margin: 0 auto;
   height: 100%;
 }
 
+.color-container {
+  cursor: pointer;
+}
+
+.notepad i {
+  color: var(--grey);
+  font-size: 1.5rem;
+}
 i {
   color: var(--grey);
 }
@@ -66,4 +89,36 @@ button {
   appearance: none;
   font-size: 1rem;
   row-gap: 8px;
+}
+
+@media screen and (max-width: 700px) {
+  .color-tool-box.notepad {
+    width: 20rem;
+    left: -400%;
+  }
+  .color-tool-box.inputColorBox {
+    width: 20rem;
+    left: -1100%;
+  }
+  .basic-color-input-text.basic-color-input-text.color-text.color-text {
+    font-size: 8px;
+  }
+  .basic-color-input-text.basic-color-input-text.basic-color-input-text {
+    font-size: 1rem;
+  }
+  .color-container,
+  .contain-color-box .color-tool-box {
+    width: 100%;
+    overflow: hidden;
+  }
+  .color-common {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+  }
+  .notepad .color-common {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+  }
 }

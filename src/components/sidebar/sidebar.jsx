@@ -1,42 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigation } from "../../context/navigation-context";
+import { useLabel } from "../../context/label-context";
+import { v4 } from "uuid";
 import { Link } from "react-router-dom";
 import "./sidebar.css";
-import { v4 } from "uuid";
 
 const Sidebar = () => {
-  const sideBarData = [
-    {
-      id: v4(),
-      path: "/",
-      name: "Notes",
-      icon: `far fa-lightbulb`,
-    },
-    {
-      id: v4(),
-      path: "/label",
-      name: "All Tags",
-      icon: `fas fa-tag`,
-    },
-    {
-      id: v4(),
-      path: "/archive",
-      name: "Archive",
-      icon: `fas fa-archive`,
-    },
-    {
-      id: v4(),
-      path: "/trash",
-      name: "Trash",
-      icon: `fas fa-trash`,
-    },
-  ];
+  const { sideBarData, setSideBarData, labelInitial } = useLabel();
+
+  useEffect(() => {
+    labelInitial.label.length
+      ? setSideBarData((state) => {
+          const newState = state.filter((item) => !item.singleLabel);
+          const newItems = labelInitial.label
+            .filter((item) =>
+              state.some(
+                (item2) =>
+                  item.toLowerCase() !== item2.name.toLowerCase() &&
+                  !item2.singleLabel
+              )
+            )
+            .map((item) => ({
+              id: v4(),
+              path: `/${item}`,
+              name: item,
+              singleLabel: true,
+              icon: `fas fa-tag`,
+            }));
+          newState.splice(2, 0, ...newItems);
+          return newState;
+        })
+      : null;
+  }, [labelInitial.label]);
 
   const { initialDisplay, changeSideDisplay, optColor, setOptColor } =
     useNavigation();
 
   return (
-    <aside className="side-bar-nav light-theme">
+    <aside
+      className={`side-bar-nav  color-default light-theme ${
+        initialDisplay.displayByHover ? "side-width" : null
+      }`}
+    >
       {sideBarData.map((item) => (
         <Link onClick={() => setOptColor(item.name)} to={item.path}>
           <div
@@ -66,9 +71,7 @@ const Sidebar = () => {
               className={`${item.icon} ${
                 optColor === item.name ? "bg-change" : null
               }`}
-              onClick={() => {
-                setOptColor(item.name), console.log(item.name);
-              }}
+              onClick={() => setOptColor(item.name)}
             ></i>
             <div
               className={`side-bar-name ${
@@ -78,7 +81,7 @@ const Sidebar = () => {
                   : null
               }`}
             >
-              {item.name} 
+              {item.name}
             </div>
           </div>
         </Link>

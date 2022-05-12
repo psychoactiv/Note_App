@@ -73,3 +73,20 @@
 .head-inp i:hover {
   color: var(--red-alert);
 }
+
+@media screen and (max-width: 600px) {
+  .label-form {
+    left: -500%;
+    width: 10rem;
+    height: 20rem;
+    font-size: 1rem;
+  }
+  .head-inp h3,
+  .user-label-input,
+  .label-option-box div {
+    font-size: 1rem;
+  }
+  .label-option-box-container {
+    height: 60%;
+  }
+}

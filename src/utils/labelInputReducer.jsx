@@ -1,30 +1,54 @@
-function removeChip(state, belongsTo, itemPara) {
+import { addNoteCall, removeLabel, updateLabelFromItem } from "./api-calls";
+
+function removeChip(state, belongsTo, itemPara, itemData) {
+  const itemLabels = state[belongsTo].filter(
+    (item) => item.toLowerCase() !== itemPara.toLowerCase()
+  );
+
+  const filterState = state.label.filter(
+    (item) =>
+      state.labelPages.allLabels.some((item2) =>
+        item2.labelName.some(
+          (item3) =>
+            item.toLowerCase() === item3.toLowerCase() &&
+            item2.id !== itemData?.id
+        )
+      ) || item.toLowerCase() !== itemPara.toLowerCase()
+  );
+
+  belongsTo === "labelNotepadChipArr"
+    ? updateLabelFromItem(itemData, itemLabels)
+    : null;
+
+  !filterState.some((item) => item.toLowerCase() === itemPara.toLowerCase())
+    ? removeLabel(itemPara)
+    : null;
+
   return {
     ...state,
-    [belongsTo]: state[belongsTo].filter(
-      (item) => item.toLowerCase() !== itemPara.toLowerCase()
-    ),
-    label: state.label.filter((item) => {
-      return (
-        state.labelPages.allLabels.some((item2) =>
-          item2.labelName.some(
-            (item3) => item.toLowerCase() === item3.toLowerCase()
-          )
-        ) || item.toLowerCase() !== itemPara.toLowerCase()
-      );
-    }),
+    [belongsTo]: itemLabels,
+    label: filterState,
   };
 }
 
 function labelInputReducer(state, { type, payload }) {
   switch (type) {
     case "ADD_LABEL":
-      const labelOb =
+      let labelOb;
+      if (
         !state.label.some(
           (item) => item.toLowerCase() === payload.item.toLowerCase()
-        ) || !state.label.length
-          ? { ...state, label: [...state.label, payload.item] }
-          : { ...state };
+        ) ||
+        !state.label.length
+      ) {
+        labelOb = { ...state, label: [...state.label, payload.item] };
+        addNoteCall({
+          belongsTo: "label",
+          item: { label: payload.item, id: payload.item },
+        });
+      } else {
+        labelOb = { ...state };
+      }
 
       return !state[payload.belongsTo].some(
         (item) => item.toLowerCase() === payload.item.toLowerCase()
@@ -35,9 +59,13 @@ function labelInputReducer(state, { type, payload }) {
           }
         : { ...labelOb };
 
+    case "ADD_LABEL_ON_FETCH":
+      console.log(state, "fetched");
+      return { ...state, label: [...payload] };
+
     case "TOGGLE_CHECKBOX":
       return state[payload.belongsTo].some((item) => item === payload.item)
-        ? removeChip(state, payload.belongsTo, payload.item)
+        ? removeChip(state, payload.belongsTo, payload.item, payload.itemData)
         : {
             ...state,
             [payload.belongsTo]: [...state[payload.belongsTo], payload.item],
@@ -56,9 +84,13 @@ function labelInputReducer(state, { type, payload }) {
     case "RESET_LABEL_STATE":
       return { ...state, [payload.belongsTo]: [], checkboxInp: [] };
     case "REMOVE_CHIP":
-      return removeChip(state, payload.belongsTo, payload.item);
+      return removeChip(
+        state,
+        payload.belongsTo,
+        payload.item,
+        payload.itemData
+      );
     case "INITIAL_NOTE_CHIPS":
-      console.log(payload);
       return { ...state, labelNotepadChipArr: [...payload] };
     default:
       return state;

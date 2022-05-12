@@ -5,6 +5,7 @@ import {
   restoreFromTrash,
   deleteAll,
   moveToArchive,
+  updateLabelFromItem,
 } from "../utils/api-calls";
 
 function noteListReducerfn(state, { type, payload }) {
@@ -73,6 +74,7 @@ function noteListReducerfn(state, { type, payload }) {
         [payload.belongsTo]: [...willMoveToArchive],
       };
     case "UPDATELABEL":
+      updateLabelFromItem(payload, payload.labelName);
       return {
         ...state,
         note: state.note.map((item) =>
@@ -81,11 +83,6 @@ function noteListReducerfn(state, { type, payload }) {
         archive: state.archive.map((item) =>
           item.id === payload.id ? { ...payload } : { ...item }
         ),
-      };
-    case "LABELFILTER":
-      return {
-        ...state,
-        note: [...payload],
       };
     default:
       return state;

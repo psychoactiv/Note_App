@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { LabelInput } from "../Label-input/Label-input";
 import { LabelChips } from "../label-chips/label-chips";
 import { CardColorInput } from "../CardColorInput/CardColorInput";
+import { priorityItem } from "../../utils/priorityOptionHelper";
 import "./input.css";
 
 const InputNote = () => {
@@ -17,52 +18,57 @@ const InputNote = () => {
     note: "",
     id: uuidv4(),
     labelName: [],
-    date: "",
-    cardColor: "plain",
+    dateAndTime: "",
+    cardColor: "color-default",
     isArchived: false,
-    priority: 0,
+    priority: "",
   });
-  const { dispatchNoteList } = useNoteData();
+  const { dispatchNoteList, setFilteredNote } = useNoteData();
   const {
-    labelInitial: { labelChipArr, labelPages },
+    labelInitial: { labelChipArr },
     labelDispatch,
   } = useLabel();
 
   function HandleSubmit(e) {
     e.preventDefault();
-    if (inpValue.isArchived) {
-      dispatchNoteList({
-        type: "ADD_NOTE",
-        payload: { item: { ...inpValue }, belongsTo: "archive" },
-      });
-    } else if (!inpValue.isArchived) {
-      dispatchNoteList({
-        type: "ADD_NOTE",
-        payload: { item: { ...inpValue }, belongsTo: "note" },
-      });
-    }
+    if (!inpValue.title && !inpValue.note) return;
+    dispatchNoteList({
+      type: "ADD_NOTE",
+      payload: {
+        item: {
+          ...inpValue,
+          dateAndTime: new Date(),
+          title: inpValue.title.replace("/s+/g", " ").trim(),
+          note: inpValue.note.replace("/s+/g", " ").trim(),
+        },
+        belongsTo: inpValue.isArchived ? "archive" : "note",
+      },
+    });
     labelDispatch({
       type: "RESET_LABEL_STATE",
       payload: { belongsTo: "labelChipArr" },
     });
+    setFilteredNote({ type: "RESET" });
     setInpValue({
       title: "",
       note: "",
       id: uuidv4(),
       labelName: [],
-      date: "",
-      cardColor: "plain",
+      dateAndTime: "",
+      cardColor: "color-default",
       isArchived: false,
-      priority: 0,
+      priority: "",
     });
     setDisplayInp({ expandInp: false, id: "" });
   }
+
   useEffect(() => {
     setInpValue((state) => ({
       ...state,
       labelName: [...labelChipArr],
     }));
   }, [labelChipArr]);
+
   return (
     <div className="input-box-holder">
       <input
@@ -70,7 +76,10 @@ const InputNote = () => {
         placeholder="Title"
         value={inpValue.title}
         onChange={(e) =>
-          setInpValue((state) => ({ ...state, title: e.target.value }))
+          setInpValue((state) => ({
+            ...state,
+            title: e.target.value,
+          }))
         }
         className={`${
           displayInp.expandInp ? `block-display` : `title-text`
@@ -78,7 +87,10 @@ const InputNote = () => {
       />
       <input
         onChange={(e) =>
-          setInpValue((state) => ({ ...state, note: e.target.value }))
+          setInpValue((state) => ({
+            ...state,
+            note: e.target.value,
+          }))
         }
         type="text"
         value={inpValue.note}
@@ -89,14 +101,14 @@ const InputNote = () => {
         }
       />
       {inpValue.labelName.length ? (
-        <LabelChips labelList={inpValue.labelName} />
+        <LabelChips labelList={inpValue} belongsTo={"labelChipArr"} />
       ) : null}
       <div
         className={`inp-utils-space ${
           displayInp.expandInp ? `flex ` : `title-text`
         }`}
       >
-        <div className="note-option flex jc-sb">
+        <div className="note-option flex jc-sb flex-wrap">
           <div className="note-icon-container">
             <i
               className="fas fa-tag grey-color icon-item"
@@ -155,6 +167,23 @@ const InputNote = () => {
             ) : (
               <div className="note-icon-details">bg color</div>
             )}
+          </div>
+          <div className="note-icon-container priority-box-container">
+            <select
+              className="priority-box color-default"
+              name="priority"
+              id="priority"
+              onClick={(e) =>
+                setInpValue((state) => ({
+                  ...state,
+                  priority: e.target.value,
+                }))
+              }
+            >
+              {priorityItem.map((item) => (
+                <option value={item}>{item}</option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="input-fate">

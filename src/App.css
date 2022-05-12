@@ -13,8 +13,24 @@
   pointer-events: none;
 }
 
+.align-same-class {
+  align-items: stretch;
+  flex: auto;
+}
+
+.sidebar-container {
+  width: fit-content;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
 .page-container {
-  flex-grow: 1;
+  transition: 0.4s ease;
+  width: 100%;
+  min-height: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -58,4 +74,22 @@
   color: #d9d9d9;
   font-size: 1.2rem;
   margin: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .adjust-content-width {
+    position: relative;
+    transition: 0.4s ease;
+    left: -11rem;
+    width: 100%;
+  }
+  .align-same-class {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .whole-App {
+    overflow: hidden;
+  }
 }

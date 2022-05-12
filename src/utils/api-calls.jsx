@@ -13,6 +13,35 @@ const addNoteCall = async (payload) => {
     } catch (err) {
       console.log(`Your data was not added in the server because of` + err);
     }
+  } else if (payload.belongsTo === "label") {
+    try {
+      await api.post("/label", { ...payload.item });
+    } catch (err) {
+      console.log(` Your data was not added in the server because of ` + err);
+    }
+  }
+};
+
+const removeLabel = async (payload) => {
+  try {
+    api.delete(`/label/${payload}`, payload);
+  } catch (err) {
+    console.log(` Your data was not removed from the server because of ` + err);
+  }
+};
+
+const updateLabelFromItem = async (itemData, itemLabels) => {
+  try {
+    await api.patch(
+      `${itemData.isArchived ? "/archive/" : "/notes/"}${itemData.id}`,
+      {
+        labelName: [...itemLabels],
+        cardColor: itemData.cardColor,
+        priority: itemData.priority,
+      }
+    );
+  } catch (err) {
+    console.log(` Your data was not removed from the server because of ` + err);
   }
 };
 
@@ -124,4 +153,6 @@ export {
   restoreFromTrash,
   deleteAll,
   moveToArchive,
+  removeLabel,
+  updateLabelFromItem,
 };

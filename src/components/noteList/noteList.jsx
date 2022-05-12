@@ -11,21 +11,21 @@ import { LabelInput } from "../Label-input/Label-input";
 const NoteList = () => {
   const { labelDispatch } = useLabel();
   const {
-    itemToReduce: { note },
     setEditNote,
     editNote,
     dispatchNoteList,
+    finalNoteList,
   } = useNoteData();
   const { listStyle } = useNavigation();
   const [openDisplay, setOpenDisplay] = useState({ id: "" });
+
   return (
     <div
       className={`note-container  ${
         listStyle ? `listed-display` : `grid-display`
       }`}
     >
-      {note.map((item) => {
-        console.log(item.cardColor);
+      {finalNoteList.map((item) => {
         return (
           <Fragment>
             {editNote.modalVisible && editNote.note.id === item.id ? (
@@ -35,7 +35,13 @@ const NoteList = () => {
               key={item.id}
               className={`single-note flex jc-sb flex-direct-col ${item.cardColor}`}
             >
-              <NoteText item={item} />
+              <NoteText
+                item={item}
+                idToCheck={{
+                  itemId: `${item.id}labelInp`,
+                  checkDisplay: openDisplay.id,
+                }}
+              />
               <div className="icon-note-container">
                 <div
                   className="note-icon-container"
@@ -83,15 +89,10 @@ const NoteList = () => {
                       setOpenDisplay({
                         id: `${item.id}labelInp`,
                       });
-                      !openDisplay.labelInp
-                        ? labelDispatch({
-                            type: "INITIAL_NOTE_CHIPS",
-                            payload: item.labelName,
-                          })
-                        : labelDispatch({
-                            type: "RESET_LABEL_STATE",
-                            payload: { belongsTo: "labelNotepadChipArr" },
-                          });
+                      labelDispatch({
+                        type: "INITIAL_NOTE_CHIPS",
+                        payload: item.labelName,
+                      });
                     }}
                   ></i>
                   {`${item.id}labelInp` === openDisplay.id ? (

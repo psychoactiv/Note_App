@@ -47,7 +47,9 @@
 .note-option {
   display: flex;
   align-items: center;
-  width: 10rem;
+  row-gap: 1rem;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .note-option i {
@@ -66,4 +68,26 @@
 
 .user-inp-btn-close:hover {
   background-color: var(--lightest-grey);
+}
+
+.priority-box {
+  outline: none;
+  border-radius: 5px;
+  color: var(--grey);
+  border: none;
+}
+
+@media screen and (max-width: 750px) {
+  .input-box-holder {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 580px) {
+  .input-box-holder {
+    width: 90%;
+  }
+  .priority-box-container,
+  .priority-box {
+    width: 100%;
+  }
 }

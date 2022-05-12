@@ -16,7 +16,10 @@ const LabelInput = ({ belongsTo, changeLabelDisplay, item }) => {
     if (e.key === "Enter") {
       labelDispatch({
         type: "ADD_LABEL",
-        payload: { item: e.target.value, belongsTo },
+        payload: {
+          item: e.target.value.replace("/s+/g", " ").trim(),
+          belongsTo,
+        },
       });
     }
   };
@@ -53,32 +56,39 @@ const LabelInput = ({ belongsTo, changeLabelDisplay, item }) => {
         onKeyDown={(e) => HandleLabelVal(e)}
       />
       <div className="label-option-box-container">
-        {label.map((item) => {
+        {label.map((labelItem) => {
           return (
-            <label htmlFor={`${item}-id`} className="flex label-option-box">
+            <label
+              htmlFor={`${labelItem}-id`}
+              className="flex label-option-box"
+            >
               <input
-                id={`${item}-id`}
+                id={`${labelItem}-id`}
                 type="checkbox"
                 checked={
                   belongsTo === "labelChipArr"
                     ? labelChipArr.some(
                         (checkItem) =>
-                          checkItem.toLowerCase() === item.toLowerCase()
+                          checkItem.toLowerCase() === labelItem.toLowerCase()
                       )
                     : labelNotepadChipArr.some(
                         (checkItem) =>
-                          checkItem.toLowerCase() === item.toLowerCase()
+                          checkItem.toLowerCase() === labelItem.toLowerCase()
                       )
                 }
                 name="chip-checkbox"
                 onChange={() =>
                   labelDispatch({
                     type: "TOGGLE_CHECKBOX",
-                    payload: { item, belongsTo },
+                    payload: {
+                      item: labelItem,
+                      belongsTo,
+                      itemData: item,
+                    },
                   })
                 }
               />
-              <div>{item}</div>
+              <div>{labelItem}</div>
             </label>
           );
         })}

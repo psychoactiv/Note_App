@@ -6,6 +6,11 @@ import React, {
   useState,
 } from "react";
 import { noteListReducerfn } from "../utils/noteListReducerfn";
+import {
+  filterNoteReducer,
+  InitialFilterState,
+} from "../utils/filterNoteReducer";
+import { compose, filterFnList } from "../utils/filterFnList";
 import api from "../api/notes-api";
 
 const NoteDataContext = createContext(null);
@@ -13,11 +18,14 @@ const NoteDataContext = createContext(null);
 const NoteDataProvider = ({ children }) => {
   const [itemToReduce, dispatchNoteList] = useReducer(noteListReducerfn, {
     note: [],
-    noteBackup:[],
     trash: [],
     archive: [],
   });
   const [editNote, setEditNote] = useState({ note: {}, modalVisible: false });
+  const [filteredNote, setFilteredNote] = useReducer(
+    filterNoteReducer,
+    InitialFilterState
+  );
 
   useEffect(() => {
     (async () => {
@@ -25,12 +33,22 @@ const NoteDataProvider = ({ children }) => {
         const recievedList = await api.get("/notes");
         const trashRecieved = await api.get("/trashed");
         const archiveRecieved = await api.get("/archive");
+
         dispatchNoteList({
           type: "LISTING",
           payload: {
-            note: [...recievedList.data],
-            trash: [...trashRecieved.data],
-            archive: [...archiveRecieved.data],
+            note: recievedList.data.map((item) => ({
+              ...item,
+              dateAndTime: new Date(item.dateAndTime),
+            })),
+            trash: trashRecieved.data.map((item) => ({
+              ...item,
+              dateAndTime: new Date(item.dateAndTime),
+            })),
+            archive: archiveRecieved.data.map((item) => ({
+              ...item,
+              dateAndTime: new Date(item.dateAndTime),
+            })),
           },
         });
       } catch (err) {
@@ -39,9 +57,22 @@ const NoteDataProvider = ({ children }) => {
     })();
   }, []);
 
+  const finalNoteList = compose(
+    filteredNote,
+    filterFnList
+  )({ archive: itemToReduce.archive, note: itemToReduce.note });
+
   return (
     <NoteDataContext.Provider
-      value={{ itemToReduce, dispatchNoteList, setEditNote, editNote }}
+      value={{
+        itemToReduce,
+        dispatchNoteList,
+        setEditNote,
+        editNote,
+        filteredNote,
+        setFilteredNote,
+        finalNoteList,
+      }}
     >
       {children}
     </NoteDataContext.Provider>

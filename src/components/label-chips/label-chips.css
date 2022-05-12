@@ -23,3 +23,21 @@
   gap: 4px;
   flex-wrap: wrap;
 }
+
+.chip-note {
+  max-width: 16rem;
+  word-wrap: break-word;
+}
+
+@media screen and (max-width: 750px) {
+  .chips-container {
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .chip-note {
+    max-width: 8rem;
+    font-size: 1.2rem;
+  }
+}

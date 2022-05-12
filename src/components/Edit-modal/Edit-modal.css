@@ -3,7 +3,6 @@
   top: 0;
   left: 0;
   min-width: 100vw;
-  opacity: 0.9;
   min-height: 100vh;
   background-color: var(--black);
   backdrop-filter: blur(5px);
@@ -59,4 +58,29 @@
 .update-action-btn-container button:hover {
   background-color: var(--grey);
   color: white;
+}
+
+@media screen and (max-width: 400px) {
+}
+
+@media screen and (max-width: 500px) {
+  .update-input-container input {
+    word-wrap: break-word;
+  }
+  .update-input-container legend {
+    font-size: 1.5rem;
+  }
+  .update-input-container {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .update-action-btn-container.update-action-btn-container button {
+    padding: 5px;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: none;
+    margin: 1rem;
+  }
 }

@@ -10,16 +10,16 @@ const Note = () => {
     <Fragment>
       <div className="flex note-inp-contain">
         <InputNote />
-        {/* <i
+        <i
           class="fas fa-filter"
           onClick={() => setOpenFilter((state) => !state)}
-        ></i> */}
+        ></i>
       </div>
-      {/* {openFilter ? (
+      {openFilter ? (
         <FilterModal closeModal={setOpenFilter} />
       ) : (
         <div className="note-icon-details">filter</div>
-      )} */}
+      )}
       <NoteList />
     </Fragment>
   );
